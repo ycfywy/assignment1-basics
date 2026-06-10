@@ -1,8 +1,50 @@
+import json
 import regex
 from collections import defaultdict
 
 # GPT-2 预分词正则（使用 regex 库支持 \p{L} 等 Unicode 属性）
 GPT2_PAT = r"""'(?:[sdmt]|ll|ve|re)| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+"""
+
+
+
+class Tokenizer:
+    def __init__(self, vocab: dict[int, bytes], merges: list[tuple[bytes, bytes]], special_tokens: list[str] | None = None) -> None:
+        
+        self.vocab = vocab
+        self.merges = merges
+        self.special_tokens = special_tokens
+
+        
+
+        
+    @classmethod
+    def from_file(
+        cls, 
+        vocab_filepath: str, 
+        merge_filepath:str  , 
+        special_tokens: list[str] | None = None,
+        )-> "Tokenizer":
+
+        with open(file=vocab_filepath, mode="r", encoding="utf-8") as f:
+            vocab_data = json.load(f)
+        
+        vocab = {int(v) : k.encode("utf-8") for k, v in vocab_data.items()}
+        
+        merges = []
+
+
+
+        
+
+    def encode():
+        pass
+
+    def encode_iterable():
+        pass
+
+    def decode():
+        pass
+
 
 
 

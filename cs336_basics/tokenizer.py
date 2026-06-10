@@ -281,7 +281,7 @@ def train_bpe(
 
     # ========== Step 8: 构建最终 vocab ==========
     vocab: dict[int, bytes] = {i: bytes([i]) for i in range(256)}
-    for i, (t1, t2) in enumerate(me·rges):
+    for i, (t1, t2) in enumerate(merges):
         vocab[256 + i] = t1 + t2
     for i, token in enumerate(special_tokens):
         vocab[256 + len(merges) + i] = token.encode("utf-8")
